@@ -3,22 +3,22 @@ package com.xlq.test.model;
 public class PhoneInfo
 {
     //号码前缀
-    String prefixNum = null;
+    private String prefixNum;
 
     //省
-    String province = null;
+    private String province;
 
     //市
-    String city = null;
+    private String city;
 
     //运营商
-    String T_Mobile = null;
+    private String T_Mobile;
 
     //区号
-    String areaCode = null;
+    private String areaCode;
 
     //邮编
-    String postCode = null;
+    private String postCode;
 
     public String getPrefixNum()
     {
