@@ -17,8 +17,8 @@ public class App
         {
             PhoneInfo phoneInfo = phoneRecognizeService.onCall(scanner.next());
             System.out.println(
-                "省份： " + phoneInfo.getProvince() + " 地区： " + phoneInfo.getCity() + " 运营商： " + phoneInfo.getT_Mobile() +
-                    " 地区邮政编号" + phoneInfo.getPostCode());
+                "省：" + phoneInfo.getProvince() + ";\n市：" + phoneInfo.getCity() + ";\n运营商:" + phoneInfo.getT_Mobile() +
+                    ";\n区号:" + phoneInfo.getAreaCode() + ";\n邮政编号" + phoneInfo.getPostCode() + "。");
         }
     }
 }
