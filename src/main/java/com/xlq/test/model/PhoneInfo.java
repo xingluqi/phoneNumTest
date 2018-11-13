@@ -62,10 +62,6 @@ public class PhoneInfo
 
     public String getAreaCode()
     {
-        if (2 == areaCode.length())
-        {
-            areaCode = "0" + areaCode;
-        }
         return areaCode;
     }
 
