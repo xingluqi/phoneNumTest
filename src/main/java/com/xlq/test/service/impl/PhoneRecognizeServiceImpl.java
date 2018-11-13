@@ -17,9 +17,9 @@ import java.util.Map;
 
 public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
 {
-    private static Logger logger = LoggerFactory.getLogger(PhoneRecognizeServiceImpl.class);
 
     private static Map<String, PhoneInfo> caches = new LinkedHashMap<String, PhoneInfo>();
+
     static
     {
         String line = null;
@@ -37,14 +37,15 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
                 phoneInfo.setProvince(data[1]);
                 phoneInfo.setCity(data[2]);
                 phoneInfo.setT_Mobile(data[3]);
-                phoneInfo.setCity(data[4]);
+                phoneInfo.setAreaCode(data[4]);
                 phoneInfo.setPostCode(data[5]);
                 caches.put(phoneInfo.getPrefixNum(), phoneInfo);
             }
+
         }
         catch (IOException e)
         {
-            logger.error(" ", e);
+            e.printStackTrace();
         }
     }
 
