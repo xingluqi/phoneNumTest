@@ -1,80 +1,52 @@
 package com.xlq.test.service.impl;
 
 import com.xlq.test.model.PhoneInfo;
-import com.xlq.test.service.phoneRecognizeService;
+import com.xlq.test.service.PhoneRecognizeService;
 
-import java.io.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
-public class phoneRecognizeServiceImpl implements phoneRecognizeService
+public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
 {
+    private static Logger logger = LoggerFactory.getLogger(PhoneRecognizeServiceImpl.class);
+
     private static Map<String, PhoneInfo> caches = new LinkedHashMap<String, PhoneInfo>();
 
     //将resources中的文件全部读取到缓存区,并存入caches中
-/*    static {
+    static
+    {
         String line = null;
         InputStream inputStream = PhoneRecognizeServiceImpl.class.getResourceAsStream("/phone.data.txt");
-        try {
+        try
+        {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null)
+            {
                 String[] data = null;
                 data = line.split("\t");
                 PhoneInfo phoneInfo = new PhoneInfo();
-                phoneInfo.setPhone(data[0]);
+                phoneInfo.setPrefixNum(data[0]);
                 phoneInfo.setProvince(data[1]);
                 phoneInfo.setCity(data[2]);
-                phoneInfo.setOperator(data[3]);
-                phoneInfo.setCityCode(data[4]);
-                phoneInfo.setPostcode(data[5]);
-                caches.put(phoneInfo.getPhone(), phoneInfo);
+                phoneInfo.setT_Mobile(data[3]);
+                phoneInfo.setCity(data[4]);
+                phoneInfo.setPostCode(data[5]);
+                caches.put(phoneInfo.getPrefixNum(), phoneInfo);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             logger.error(" ", e);
-        }
-    }*/
-    public static void readTxtFile()
-    {
-        try
-        {
-            String filePath = "D:\\Chrome Download\\phone.data.txt";
-            String encoding = "UTF-8";
-            File file = new File(filePath);
-            if (file.isFile() && file.exists())//判断文件是否存在
-            {
-                InputStreamReader
-                    read = new InputStreamReader(
-                    new FileInputStream(file), encoding);//考虑到编码格式
-                BufferedReader bufferedReader = new BufferedReader(read);
-                String lineTxt = null;
-                while ((lineTxt = bufferedReader.readLine()) != null)
-                {
-                    //System.out.println(lineTxt);
-                    String[] phoneData = lineTxt.split("\t");
-                    System.out.println(phoneData);
-                    PhoneInfo pi = new PhoneInfo();
-                    pi.setPrefixNum(phoneData[0]);//号码前缀
-                    pi.setProvince(phoneData[1]);//省
-                    pi.setCity(phoneData[2]);//市
-                    pi.setT_Mobile(phoneData[3]);//运营商
-                    pi.setAreaCode(phoneData[4]);//区号
-                    pi.setPostCode(phoneData[5]);//邮编
-                }
-                read.close();
-            }
-            else
-            {
-                System.out.println("找不到指定的文件");
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println("读取文件内容出错");
-            e.printStackTrace();
         }
     }
 
