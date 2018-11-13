@@ -3,9 +3,6 @@ package com.xlq.test.service.impl;
 import com.xlq.test.model.PhoneInfo;
 import com.xlq.test.service.PhoneRecognizeService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,11 +49,9 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
     public PhoneInfo onCall(String phone)
     {
         PhoneInfo phoneInfo = new PhoneInfo();
-        //获得号码的前七位
         String phoneNum = phone.substring(0, 7);
-        //用二分法找出和caches中匹配的数据,如果没匹配到，则返回null
         int i = 0;
-        ArrayList<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         for (Map.Entry<String, PhoneInfo> phoneInfoEntry : phoneInfoMap.entrySet())
         {
             list.add(phoneInfoEntry.getKey());
@@ -71,7 +66,7 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         int result = -1;
         while (start <= end)
         {
-            int mid = start + (end - start) / 2;    //防止溢位
+            int mid = start + (end - start) / 2;
             if (Integer.parseInt(arr.get(mid)) > hkey)
             {
                 end = mid - 1;
