@@ -20,8 +20,6 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
     private static Logger logger = LoggerFactory.getLogger(PhoneRecognizeServiceImpl.class);
 
     private static Map<String, PhoneInfo> caches = new LinkedHashMap<String, PhoneInfo>();
-
-    //将resources中的文件全部读取到缓存区,并存入caches中
     static
     {
         String line = null;
@@ -50,12 +48,6 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         }
     }
 
-    /**
-     * 实现电话号码的运营商和地区的识别
-     *
-     * @param phone 电话号码
-     * @return PhoneInfo
-     */
     public PhoneInfo onCall(String phone)
     {
         PhoneInfo phoneInfo = new PhoneInfo();
@@ -72,15 +64,6 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         return phoneInfo;
     }
 
-    /**
-     * 二分法查找匹配的数据
-     *
-     * @param arr   List<String>
-     * @param start
-     * @param end
-     * @param hkey
-     * @return PhoneInfo
-     */
     public static PhoneInfo binarySearch(List<String> arr, int start, int end, int hkey)
     {
         PhoneInfo phoneInfo = null;
