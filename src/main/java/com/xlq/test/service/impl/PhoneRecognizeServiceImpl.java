@@ -18,7 +18,7 @@ import java.util.Map;
 public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
 {
 
-    private static Map<String, PhoneInfo> caches = new LinkedHashMap<String, PhoneInfo>();
+    private static Map<String, PhoneInfo> phoneInfoMap = new LinkedHashMap<String, PhoneInfo>();
 
     static
     {
@@ -39,7 +39,7 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
                 phoneInfo.setT_Mobile(data[3]);
                 phoneInfo.setAreaCode(data[4]);
                 phoneInfo.setPostCode(data[5]);
-                caches.put(phoneInfo.getPrefixNum(), phoneInfo);
+                phoneInfoMap.put(phoneInfo.getPrefixNum(), phoneInfo);
             }
 
         }
@@ -57,7 +57,7 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         //用二分法找出和caches中匹配的数据,如果没匹配到，则返回null
         int i = 0;
         ArrayList<String> list = new ArrayList<String>();
-        for (Map.Entry<String, PhoneInfo> phoneInfoEntry : caches.entrySet())
+        for (Map.Entry<String, PhoneInfo> phoneInfoEntry : phoneInfoMap.entrySet())
         {
             list.add(phoneInfoEntry.getKey());
         }
@@ -92,7 +92,7 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         {
             return null;
         }
-        return caches.get(arr.get(result));
+        return phoneInfoMap.get(arr.get(result));
     }
 
 }
