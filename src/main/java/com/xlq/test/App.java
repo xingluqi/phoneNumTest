@@ -1,7 +1,7 @@
 package com.xlq.test;
 
 import com.xlq.test.model.PhoneInfo;
-import com.xlq.test.service.impl.phoneRecognizeServiceImpl;
+import com.xlq.test.service.impl.PhoneRecognizeServiceImpl;
 import com.xlq.test.service.PhoneRecognizeService;
 
 import java.util.Scanner;
@@ -11,7 +11,7 @@ public class App
 
     public static void main(String[] args)
     {
-        PhoneRecognizeService phoneRecognizeService = new phoneRecognizeServiceImpl();
+        PhoneRecognizeService phoneRecognizeService = new PhoneRecognizeServiceImpl();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext())
         {
