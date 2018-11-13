@@ -55,7 +55,7 @@ public class PhoneRecognizeServiceImpl implements PhoneRecognizeService
         String phoneNum = phone.substring(0, 7);
         //用二分法找出和caches中匹配的数据,如果没匹配到，则返回null
         int i = 0;
-        List<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<String>();
         for (Map.Entry<String, PhoneInfo> phoneInfoEntry : caches.entrySet())
         {
             list.add(phoneInfoEntry.getKey());
